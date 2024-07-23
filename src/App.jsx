@@ -1,11 +1,15 @@
+import FeatureMovie from './components/FeatureMovie'
+import Header from './components/Header'
+
 function App() {
-  return (
-    <>
-      <p className="text-blue-600/100">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+    return (
+        <>
+            {/* header */}
+            <Header />
+            {/* hero */}
+            <FeatureMovie />
+        </>
+    )
 }
 
-export default App;
+export default App
