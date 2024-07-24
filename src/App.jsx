@@ -1,5 +1,6 @@
 import FeatureMovie from './components/FeatureMovie'
 import Header from './components/Header'
+import MediaList from './components/MediaList'
 
 function App() {
     return (
@@ -8,6 +9,7 @@ function App() {
             <Header />
             {/* hero */}
             <FeatureMovie />
+            <MediaList />
         </>
     )
 }

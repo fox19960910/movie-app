@@ -4,6 +4,7 @@ import PageginateIndicator from './PageginateIndicator'
 
 const FeatureMovie = () => {
     const [movies, setMovies] = useState([])
+    const [activeMovieId, setActiveMovieId] = useState([])
     useEffect(() => {
         fetch(
             'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1',
@@ -26,6 +27,7 @@ const FeatureMovie = () => {
                     .slice(randomNumber, randomNumber + 4)
                     .map((item, index) => ({ ...item, active: index === 0 }))
                 setMovies(result)
+                setActiveMovieId(result[0]?.id)
             })
             .catch((err) => {
                 console.log(err)
@@ -34,14 +36,17 @@ const FeatureMovie = () => {
     return (
         <div className="relative overflow-hidden">
             {movies && movies.length > 0 && (
-                <Movie movie={movies.find((item) => item.active)} />
+                <Movie
+                    movie={movies.find((item) => item.id === activeMovieId)}
+                />
             )}
 
             <div className="absolute bottom-[10%] right-4 sm:right-8">
                 {movies && movies.length > 0 && (
                     <PageginateIndicator
                         pageList={movies}
-                        setMovies={setMovies}
+                        activeId={activeMovieId}
+                        setActiveMovieId={setActiveMovieId}
                     />
                 )}
             </div>
