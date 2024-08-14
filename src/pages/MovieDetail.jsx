@@ -2,14 +2,15 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CircularProgressBar from '../components/CircularProgressBar'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import {groupBy} from 'lodash'
 
 function MovieDetail() {
     const { id } = useParams()
     const [movieDetail, setMovieDetail] = useState({})
     useEffect(() => {
         if (!id) return
-        fetch(`https://api.themoviedb.org/3/movie/${id}`, {
+        fetch(`https://api.themoviedb.org/3/movie/${id}?append_to_response=release_dates,credits`, {
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -27,6 +28,15 @@ function MovieDetail() {
             })
     }, [id])
 
+    const certification = useMemo(()=> {
+        return ((movieDetail.release_dates?.results || []).find(result => result.iso_3166_1 ==='US')?.release_dates || []).find(releaseDatea => releaseDatea.certification)?.certification
+    },[movieDetail])
+    const groupedCrews = useMemo(() => {
+        const crews = (movieDetail?.credits?.crew || []).filter(crew => ['Director','Screenplay', 'Writer'].includes(crew.job)).map(crew => ({id:crew.id,job:crew.job,name:crew.name}))
+        return groupBy(crews, 'job');
+    },[movieDetail])
+    
+    console.log( groupedCrews);
     return (
         <div className="relative overflow-hidden text-white">
             <img
@@ -48,11 +58,11 @@ function MovieDetail() {
                     </p>
                     <div className="flex items-center gap-4">
                         <span className="border border-gray-400 p-1 text-gray-400">
-                            G
+                            {certification}
                         </span>
                         <p>{movieDetail?.release_date}</p>
                         <p>
-                            {movieDetail?.genres
+                            {(movieDetail?.genres || [])
                                 .map((item) => item?.name)
                                 .join(', ')}
                         </p>
@@ -73,21 +83,16 @@ function MovieDetail() {
                     <div className="mt-6">
                         <p className="mb-2 text-[1.3vw] font-bold">Overview</p>
                         <p>
-                            While scavenging the deep ends of a derelict space
-                            station, a group of young space colonizers come face
-                            to face with the most terrifying life form in the
-                            universe
+                            {movieDetail?.overview}
                         </p>
                     </div>
                     <div className="mt-4 grid grid-cols-2 gap-2">
-                        <div>
-                            <p className="font-bold">tr</p>
-                            <p>tr</p>
-                        </div>
-                        <div>
-                            <p className="font-bold">tr</p>
-                            <p>tr</p>
-                        </div>
+                        {
+                            Object.keys(groupedCrews).map(job => (    <div key={job}>
+                                <p className="font-bold" >{job}</p>
+                                <p>{(groupedCrews[job] || []).map(crew => crew.name).join(', ')}</p>
+                            </div>))
+                        }
                     </div>
                 </div>
             </div>
