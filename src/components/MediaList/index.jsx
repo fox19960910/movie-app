@@ -56,12 +56,13 @@ const MediaList = ({ title, tabs }) => {
                     mediaList.map((media) => (
                         <MovieCard
                             key={media?.id}
+                            id={media?.id}
                             title={media?.title || media?.name}
                             release_date={
                                 media?.release_date || media?.first_air_date
                             }
                             backdrop_path={media?.poster_path}
-                            vote_average={media?.vote_average}
+                            vote_average={Math.floor(media?.vote_average)}
                             overview={media?.overview}
                             media_type={media?.media_type}
                         />
