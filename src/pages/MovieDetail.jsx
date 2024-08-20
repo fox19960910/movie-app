@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Loading from '../components/Loading'
-import Banner from '../components/MediaDetail/Banner'
-import PerformerList from '../components/MediaDetail/PerformerList'
+import Loading from '@components/Loading'
+import Banner from '@components/MediaDetail/Banner'
+import PerformerList from '@components/MediaDetail/PerformerList'
+import RelatedMediaList from '@components/MediaDetail/RelatedMediaList'
 
 function MovieDetail() {
     const { id } = useParams()
@@ -36,14 +37,17 @@ function MovieDetail() {
 
     if (isLoading) return <Loading />
     return (
-        <div>
+        <div className="bg-black text-[1.2vw] text-white">
             <Banner mediaInfo={movieDetail} />
-            <div className="max-auto flex max-w-screen-xl bg-slate-950 px-6 py-10">
+            <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10">
                 <div className="flex-[2]">
-                    <PerformerList />
+                    <PerformerList
+                        performers={movieDetail.credits?.cast || []}
+                    />
+                    <RelatedMediaList />
                 </div>
                 <div className="flex-1">
-                    <p>Infomation</p>
+                    <h3 className="mb-4 text-[1.4vw] font-bold">Infomation</h3>
                 </div>
             </div>
         </div>
