@@ -1,6 +1,6 @@
 const PerformerInfo = ({ name, profilePath, character }) => {
     return (
-        <div className="overflow-hidden rounded-lg border border-slate-300 bg-black shadow-sm">
+        <div className="overflow-hidden rounded-lg border border-slate-800 bg-black shadow-sm">
             <img
                 className="rounded-lg"
                 src={

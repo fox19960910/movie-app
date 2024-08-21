@@ -20,7 +20,7 @@ const Banner = ({ mediaInfo }) => {
         return groupBy(crews, 'job')
     }, [mediaInfo])
     return (
-        <div className="relative overflow-hidden text-white">
+        <div className="relative overflow-hidden text-white shadow-sm shadow-slate-900">
             <img
                 className="absolute inset-0 brightness-[.2]"
                 src={`https://image.tmdb.org/t/p/original/${mediaInfo?.backdrop_path}`}

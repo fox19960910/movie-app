@@ -1,5 +1,5 @@
 import FeatureMovie from '../components/FeatureMovie'
-import { TOP_RATED_TABS, TRENDING_TABS } from '../components/libs/constants'
+import { TOP_RATED_TABS, TRENDING_TABS } from '../libs/constants'
 import MediaList from '../components/MediaList'
 
 function Home() {
