@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Banner = ({ mediaInfo }) => {
     const certification = useMemo(() => {
         return (
-            (mediaInfo.release_dates?.results || []).find(
+            (mediaInfo?.release_dates?.results || []).find(
                 (result) => result.iso_3166_1 === 'US'
             )?.release_dates || []
         ).find((releaseDatea) => releaseDatea.certification)?.certification
@@ -31,6 +31,8 @@ const Banner = ({ mediaInfo }) => {
                     <img
                         src={`https://image.tmdb.org/t/p/original/${mediaInfo?.poster_path}`}
                         alt=""
+                        width={600}
+                        height={900}
                     />
                 </div>
 
@@ -53,7 +55,7 @@ const Banner = ({ mediaInfo }) => {
                         <div className="flex items-center gap-2">
                             <CircularProgressBar
                                 percent={Math.floor(
-                                    mediaInfo.vote_average || 0
+                                    mediaInfo?.vote_average || 0
                                 )}
                                 size={3.5}
                             />{' '}

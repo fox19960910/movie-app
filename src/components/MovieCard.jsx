@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import CircularProgressBar from './CircularProgressBar'
+import ImageCpn from './Image'
 
 const MovieCard = (props) => {
     const { id, title, release_date, backdrop_path, vote_average, media_type } =
@@ -14,10 +15,11 @@ const MovieCard = (props) => {
                         TV Show
                     </p>
                 )}
-                <img
-                    className="rounded-lg"
+                <ImageCpn
+                    className="w-full rounded-lg"
                     src={`https://image.tmdb.org/t/p/original${backdrop_path ?? ''}`}
-                    alt=""
+                    width={210}
+                    height={300}
                 />
                 <div className="relative -top-[1.5vw] px-4">
                     <CircularProgressBar percent={Math.round(vote_average)} />

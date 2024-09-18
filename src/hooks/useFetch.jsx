@@ -4,7 +4,7 @@ const DEFAULT_HEADER = {
     accept: 'application/json',
     Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
 }
-export default function useFetcher({ url, method = 'GET', headers = {} }) {
+export default function useFetch({ url, method = 'GET', headers = {} }) {
     const [data, setData] = useState()
     const [isLoading, setIsLoading] = useState(false)
     const { VITE_API_HOST } = import.meta.env
@@ -24,6 +24,6 @@ export default function useFetcher({ url, method = 'GET', headers = {} }) {
             .finally(() => {
                 setIsLoading(false)
             })
-    }, [method, headers, url])
+    }, [method, url, JSON.stringify(headers)])
     return { data, isLoading }
 }

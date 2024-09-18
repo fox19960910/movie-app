@@ -1,7 +1,6 @@
 import { currencyFormatter } from '@libs/utils'
 
 const MovieInfomation = ({ movieInfo = {} }) => {
-    console.log('movieInfo', movieInfo)
     return (
         <div>
             <h3 className="mb-4 text-[1.4vw] font-bold">Infomation</h3>

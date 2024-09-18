@@ -24,10 +24,10 @@ const Movie = ({ movie }) => {
                 </div>
 
                 <div className="mt-4">
-                    <button className="text-10 mr-2 rounded bg-white px-4 py-2 text-black lg:text-lg">
+                    <button className="mr-2 rounded bg-white px-4 py-2 text-10 text-black lg:text-lg">
                         <FontAwesomeIcon icon={faPlay} /> Trailer
                     </button>
-                    <button className="text-10 rounded bg-slate-300/35 px-4 py-2 text-white lg:text-lg">
+                    <button className="rounded bg-slate-300/35 px-4 py-2 text-10 text-white lg:text-lg">
                         View Detail
                     </button>
                 </div>

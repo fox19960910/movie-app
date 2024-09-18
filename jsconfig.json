@@ -11,6 +11,9 @@
             "@pages/*": [
                 "src/pages/*"
             ],
+            "@hooks/*": [
+                "src/hooks/*"
+            ],
         },
     }
 }
