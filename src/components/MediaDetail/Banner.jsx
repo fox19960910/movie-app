@@ -14,6 +14,8 @@ const Banner = ({
     overview,
     releaseDate,
 }) => {
+    console.log('groupedCrews', groupedCrews)
+
     return (
         <div className="relative overflow-hidden text-white shadow-sm shadow-slate-900">
             <img
@@ -62,12 +64,13 @@ const Banner = ({
                         <p>{overview}</p>
                     </div>
                     <div className="mt-4 grid grid-cols-2 gap-2">
-                        {Object.keys(groupedCrews).map((job) => (
+                        {Object.keys(groupedCrews ?? {}).map((job) => (
                             <div key={job}>
                                 <p className="font-bold">{job}</p>
                                 <p>
                                     {(groupedCrews[job] || [])
                                         .map((crew) => crew.name)
+                                        .slice(0, 6)
                                         .join(', ')}
                                 </p>
                             </div>

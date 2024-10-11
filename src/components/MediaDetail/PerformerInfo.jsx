@@ -1,6 +1,6 @@
 import ImageCpn from '@components/Image'
 
-const PerformerInfo = ({ name, profilePath, character }) => {
+const PerformerInfo = ({ name, profilePath, character, episodeCount }) => {
     return (
         <div className="overflow-hidden rounded-lg border border-slate-800 bg-black shadow-sm">
             <ImageCpn
@@ -16,6 +16,12 @@ const PerformerInfo = ({ name, profilePath, character }) => {
             <div className="p-3">
                 <p className="font-bold">{name}</p>
                 <p>{character}</p>
+                {episodeCount && (
+                    <p>
+                        {episodeCount}{' '}
+                        {episodeCount > 1 ? 'Episodes' : 'Episode'}
+                    </p>
+                )}
             </div>
         </div>
     )

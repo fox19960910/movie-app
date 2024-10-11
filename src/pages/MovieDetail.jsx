@@ -31,19 +31,18 @@ function MovieDetail() {
             .map((crew) => ({ id: crew.id, job: crew.job, name: crew.name }))
         return groupBy(crews, 'job')
     }, [movieDetail])
-
     if (isLoadingMovie) return <Loading />
     return (
         <div className="bg-black text-[1.2vw] text-white">
             <Banner
-                title={movieDetail.title}
-                backdropPath={movieDetail.backdrop_path}
-                posterPath={movieDetail.poster_path}
-                releaseDate={movieDetail.release_dates}
+                title={movieDetail?.title}
+                backdropPath={movieDetail?.backdrop_path}
+                posterPath={movieDetail?.poster_path}
+                releaseDate={movieDetail?.release_date}
                 certification={certification}
                 groupedCrews={groupedCrews}
-                voteAverage={movieDetail.vote_averages}
-                genres={movieDetail.genres}
+                voteAverage={movieDetail?.vote_average}
+                genres={movieDetail?.genres}
             />
             <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
                 <div className="flex-[2]">
