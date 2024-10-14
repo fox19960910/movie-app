@@ -3,6 +3,7 @@ import CircularProgressBar from '../CircularProgressBar'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ImageCpn from '@components/Image'
+import { useModalContext } from '@components/context/ModalProvider'
 const Banner = ({
     title,
     backdropPath,
@@ -13,11 +14,21 @@ const Banner = ({
     voteAverage,
     overview,
     releaseDate,
+    trailerVideoKey,
 }) => {
-    console.log('groupedCrews', groupedCrews)
-
+    const { setIsShowing, setContent } = useModalContext()
+    const handleClickTrailer = () => {
+        setIsShowing(true)
+        setContent(
+            <iframe
+                title="Trailer"
+                className="aspect-video w-[50vw]"
+                src={`http://youtube.com/embed/${trailerVideoKey}`}
+            />
+        )
+    }
     return (
-        <div className="relative overflow-hidden text-white shadow-sm shadow-slate-900">
+        <div className="relative overflow-hidden bg-black text-white shadow-sm shadow-slate-900">
             <img
                 className="absolute inset-0 brightness-[.2]"
                 src={`https://image.tmdb.org/t/p/original/${backdropPath}`}
@@ -54,7 +65,7 @@ const Banner = ({
                             />{' '}
                             Rating
                         </div>
-                        <button>
+                        <button onClick={handleClickTrailer}>
                             <FontAwesomeIcon icon={faPlay} className="mr-1" />
                             Trailer
                         </button>

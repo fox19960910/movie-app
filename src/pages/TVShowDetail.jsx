@@ -12,7 +12,7 @@ import SeasionList from '@components/MediaDetail/SeasionList'
 function TVShowDetail() {
     const { id } = useParams()
     const { data: tvDetail, isloading: isLoadingTv } = useFetch({
-        url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits`,
+        url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits,videos`,
     })
     const { data: recomendationsRes, isloading: isLoadingRecomendations } =
         useFetch({ url: `/tv/${id}/recommendations` })
@@ -58,11 +58,18 @@ function TVShowDetail() {
                 groupedCrews={groupedCrews}
                 voteAverage={tvDetail?.vote_average}
                 genres={tvDetail?.genres}
+                trailerVideoKey={
+                    tvDetail?.videos?.results?.find(
+                        (video) => video.type === 'Trailer'
+                    )?.key
+                }
             />
             <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
                 <div className="flex-[2]">
                     <PerformerList performers={performers} />
-                    <SeasionList />
+                    <SeasionList
+                        seasons={(tvDetail?.seasons || []).reverse()}
+                    />
                     <RelatedMediaList
                         mediaList={recomendations}
                         isLoading={isLoadingRecomendations}

@@ -7,14 +7,17 @@ const ImageCpn = ({ src, width, height, className }) => {
 
     useEffect(() => {
         const img = new Image()
-        img.src = src
-        img.onload = () => {
-            setCurrentSrc(src)
+        if (src) {
+            img.src = src
+            img.onload = () => {
+                setCurrentSrc(src)
+            }
         }
+        setCurrentSrc(`https://placehold.co/${width}x${height}?text=No image`)
         return () => {
             img.onload = null
         }
-    }, [src])
+    }, [src, width, height])
     return (
         <img
             className={currentSrc === src ? className : `${className} blur-sm`}
