@@ -11,7 +11,7 @@ import { groupBy } from 'lodash'
 function MovieDetail() {
     const { id } = useParams()
     const { data: movieDetail, isloading: isLoadingMovie } = useFetch({
-        url: `/movie/${id}?append_to_response=release_dates,credits`,
+        url: `/movie/${id}?append_to_response=release_dates,credits, videos`,
     })
     const { data: recomendationsRes, isloading: isLoadingRecomendations } =
         useFetch({ url: `/movie/${id}/recommendations` })
@@ -43,6 +43,11 @@ function MovieDetail() {
                 groupedCrews={groupedCrews}
                 voteAverage={movieDetail?.vote_average}
                 genres={movieDetail?.genres}
+                trailerVideoKey={
+                    movieDetail?.videos?.results?.find(
+                        (video) => video.type === 'Trailer'
+                    )?.key
+                }
             />
             <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
                 <div className="flex-[2]">
