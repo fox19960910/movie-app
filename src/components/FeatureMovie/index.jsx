@@ -6,7 +6,7 @@ import useFetch from '@hooks/useFetch'
 const FeatureMovie = () => {
     const [activeMovieId, setActiveMovieId] = useState()
     const { data: moviesResponse } = useFetch({
-        url: `/movie/popular?language=en-US&page=1`,
+        url: `/discover/movie?include_adult=false&include_video=true&language=en-US&page=1`,
     })
 
     const movies = useMemo(() => {
@@ -23,7 +23,6 @@ const FeatureMovie = () => {
         if (movies[0]?.id) setActiveMovieId(movies[0]?.id)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [JSON.stringify(movies)])
-    console.log('activeMovieId', activeMovieId)
     return (
         <div className="relative overflow-hidden">
             {movies

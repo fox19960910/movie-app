@@ -1,15 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import MovieCard from '../MovieCard'
 import useFetch from '@hooks/useFetch'
+import { useSearchParams } from 'react-router-dom'
 
-const MediaList = ({ title, tabs }) => {
+const MediaList = ({ tabSubject, title, tabs }) => {
     const [activeTab, setActiveTab] = useState(tabs[0].value)
+    const [tabParams, setTabParams] = useSearchParams()
     const url = tabs.find((tab) => tab.value === activeTab)?.url
     const { data: response } = useFetch({
         url,
     })
 
     const mediaList = (response?.results || []).slice(0, 12)
+    const queryTab = tabParams.get(tabSubject) || ''
+
+    const handleClickTab = (tab) => {
+        setActiveTab(tab)
+        setTabParams({ [tabSubject]: tab })
+    }
+    useEffect(() => {
+        if (queryTab) setActiveTab(queryTab)
+    }, [queryTab])
     return (
         <div className="bg-black px-8 py-10 text-[1.2vw] text-white">
             <div className="mb-6 flex items-center gap-4">
@@ -25,7 +36,7 @@ const MediaList = ({ title, tabs }) => {
                             <li
                                 key={item.value}
                                 className={`cursor rounded px-2 py-1 ${active}`}
-                                onClick={() => setActiveTab(item.value)}
+                                onClick={() => handleClickTab(item.value)}
                             >
                                 {item.label}{' '}
                             </li>

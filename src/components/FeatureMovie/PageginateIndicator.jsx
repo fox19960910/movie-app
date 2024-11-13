@@ -20,7 +20,7 @@ const PageginateIndicator = ({ pageList, activeId, setActiveMovieId }) => {
         // Clear any existing interval before creating a new one
         clearInterval(intervalRef.current)
 
-        intervalRef.current = setInterval(changeSlide, 3000)
+        intervalRef.current = setInterval(changeSlide, 5000)
 
         return () => clearInterval(intervalRef.current)
     }, [pageList, activeId]) // Dependency array includes both pageList and activeId

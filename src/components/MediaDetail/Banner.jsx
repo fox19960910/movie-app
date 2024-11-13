@@ -16,10 +16,9 @@ const Banner = ({
     releaseDate,
     trailerVideoKey,
 }) => {
-    const { setIsShowing, setContent } = useModalContext()
+    const { openPopup } = useModalContext()
     const handleClickTrailer = () => {
-        setIsShowing(true)
-        setContent(
+        openPopup(
             <iframe
                 title="Trailer"
                 className="aspect-video w-[50vw]"

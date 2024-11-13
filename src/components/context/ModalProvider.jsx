@@ -14,8 +14,13 @@ const ModalProvider = ({ children }) => {
             document.body.style.overflow = 'scroll'
         }
     }, [isShowing])
+
+    const openPopup = (content) => {
+        setIsShowing(true)
+        setContent(content)
+    }
     return (
-        <Modalcontext.Provider value={{ setIsShowing, setContent }}>
+        <Modalcontext.Provider value={{ openPopup }}>
             {children}
             {isShowing && (
                 <div className="fixed inset-0">

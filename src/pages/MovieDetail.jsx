@@ -11,7 +11,7 @@ import { groupBy } from 'lodash'
 function MovieDetail() {
     const { id } = useParams()
     const { data: movieDetail, isloading: isLoadingMovie } = useFetch({
-        url: `/movie/${id}?append_to_response=release_dates,credits, videos`,
+        url: `/movie/${id}?append_to_response=release_dates,credits,videos`,
     })
     const { data: recomendationsRes, isloading: isLoadingRecomendations } =
         useFetch({ url: `/movie/${id}/recommendations` })

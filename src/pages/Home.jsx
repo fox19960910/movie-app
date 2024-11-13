@@ -7,8 +7,16 @@ function Home() {
         <>
             {/* hero */}
             <FeatureMovie />
-            <MediaList title="Trending" tabs={TRENDING_TABS} />
-            <MediaList title="Top rated" tabs={TOP_RATED_TABS} />
+            <MediaList
+                tabSubject="trending"
+                title="Trending"
+                tabs={TRENDING_TABS}
+            />
+            <MediaList
+                tabSubject="top_rated"
+                title="Top rated"
+                tabs={TOP_RATED_TABS}
+            />
         </>
     )
 }
