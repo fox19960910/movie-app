@@ -13,16 +13,18 @@ const MediaList = ({ tabSubject, title, tabs }) => {
 
     const mediaList = (response?.results || []).slice(0, 12)
     const queryTab = tabParams.get(tabSubject) || ''
+    const tabObject = Object.fromEntries(tabParams)
+    console.log(mediaList)
 
     const handleClickTab = (tab) => {
         setActiveTab(tab)
-        setTabParams({ [tabSubject]: tab })
+        setTabParams({ ...tabObject, [tabSubject]: tab })
     }
     useEffect(() => {
         if (queryTab) setActiveTab(queryTab)
     }, [queryTab])
     return (
-        <div className="bg-black px-8 py-10 text-[1.2vw] text-white">
+        <div className="bg-black px-10 py-10 text-[1.2vw] text-white">
             <div className="mb-6 flex items-center gap-4">
                 <p className="text-[2vw] font-bold">{title}</p>
 

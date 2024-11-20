@@ -5,6 +5,8 @@ import ImageCpn from './Image'
 const MovieCard = (props) => {
     const { id, title, release_date, backdrop_path, vote_average, media_type } =
         props
+    console.log('media_type', media_type)
+
     const movieURL = `/${media_type}/${id}`
     return (
         <Link to={movieURL} className="rounded-lg border border-slate-800">
@@ -17,9 +19,12 @@ const MovieCard = (props) => {
                 )}
                 <ImageCpn
                     className="w-full rounded-lg"
-                    src={`https://image.tmdb.org/t/p/original${backdrop_path ?? ''}`}
-                    width={210}
-                    height={300}
+                    src={
+                        backdrop_path &&
+                        `https://media.themoviedb.org/t/p/w220_and_h330_face${backdrop_path}`
+                    }
+                    width={220}
+                    height={330}
                 />
                 <div className="relative -top-[1.5vw] px-4">
                     <CircularProgressBar percent={Math.round(vote_average)} />

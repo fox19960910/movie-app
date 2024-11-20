@@ -33,7 +33,7 @@ function MovieDetail() {
     }, [movieDetail])
     if (isLoadingMovie) return <Loading />
     return (
-        <div className="bg-black text-[1.2vw] text-white">
+        <div>
             <Banner
                 title={movieDetail?.title}
                 backdropPath={movieDetail?.backdrop_path}
@@ -49,18 +49,21 @@ function MovieDetail() {
                     )?.key
                 }
             />
-            <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
-                <div className="flex-[2]">
-                    <PerformerList
-                        performers={movieDetail?.credits?.cast || []}
-                    />
-                    <RelatedMediaList
-                        mediaList={recomendations}
-                        isLoading={isLoadingRecomendations}
-                    />
-                </div>
-                <div className="flex-1">
-                    <MovieInfomation movieInfo={movieDetail} />
+            <div className="bg-black text-[1.2vw] text-white">
+                <div className="container">
+                    <div className="flex-[2]">
+                        <PerformerList
+                            performers={movieDetail?.credits?.cast || []}
+                        />
+                        <RelatedMediaList
+                            mediaList={recomendations}
+                            isLoading={isLoadingRecomendations}
+                            title={'More like this'}
+                        />
+                    </div>
+                    <div className="flex-1">
+                        <MovieInfomation movieInfo={movieDetail} />
+                    </div>
                 </div>
             </div>
         </div>

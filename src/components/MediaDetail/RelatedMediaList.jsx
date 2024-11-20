@@ -1,14 +1,14 @@
 import Loading from '@components/Loading'
 import MovieCard from '@components/MovieCard'
 
-const RelatedMediaList = ({ mediaList = [], isLoading }) => {
+const RelatedMediaList = ({ mediaList = [], isLoading, title }) => {
     return (
         <div>
-            <h3 className="mb-4 text-[1.4vw] font-bold">More like this</h3>
+            <h3 className="mb-4 text-[1.4vw] font-bold">{title}</h3>
             {isLoading ? (
                 <Loading />
             ) : (
-                <div className="xxl:grid-cols-6 xxl:gap-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                <div className="xxl:grid-cols-6 xxl:gap-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
                     {mediaList.length > 0 &&
                         mediaList.map((media) => (
                             <MovieCard

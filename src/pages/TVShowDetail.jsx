@@ -23,6 +23,7 @@ function TVShowDetail() {
             (result) => result.iso_3166_1 === 'US'
         )?.rating
     }, [tvDetail])
+
     const groupedCrews = useMemo(() => {
         const crews = (tvDetail?.aggregate_credits?.crew || [])
             .filter((crew) => {
@@ -48,7 +49,7 @@ function TVShowDetail() {
     )
     if (isLoadingTv) return <Loading />
     return (
-        <div className="bg-black text-[1.2vw] text-white">
+        <div>
             <Banner
                 title={tvDetail?.name}
                 backdropPath={tvDetail?.backdrop_path}
@@ -64,19 +65,22 @@ function TVShowDetail() {
                     )?.key
                 }
             />
-            <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
-                <div className="flex-[2]">
-                    <PerformerList performers={performers} />
-                    <SeasionList
-                        seasons={(tvDetail?.seasons || []).reverse()}
-                    />
-                    <RelatedMediaList
-                        mediaList={recomendations}
-                        isLoading={isLoadingRecomendations}
-                    />
-                </div>
-                <div className="flex-1">
-                    <TVInfomation tvInfo={tvDetail} />
+            <div className="bg-black text-[1.2vw] text-white">
+                <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
+                    <div className="flex-[2]">
+                        <PerformerList performers={performers} />
+                        <SeasionList
+                            seasons={(tvDetail?.seasons || []).reverse()}
+                        />
+                        <RelatedMediaList
+                            mediaList={recomendations}
+                            isLoading={isLoadingRecomendations}
+                            title={'More like this'}
+                        />
+                    </div>
+                    <div className="flex-1">
+                        <TVInfomation tvInfo={tvDetail} />
+                    </div>
                 </div>
             </div>
         </div>

@@ -15,7 +15,10 @@ const SeasionList = ({ seasons = [] }) => {
                         className="flex gap-4 rounded-lg border border-slate-200 p-3 shadow-md"
                     >
                         <ImageCpn
-                            src={`https://media.themoviedb.org/t/p/w300${season.poster_path}`}
+                            src={
+                                season.poster_path &&
+                                `https://media.themoviedb.org/t/p/w300${season.poster_path}`
+                            }
                             alt=""
                             width={130}
                             height={195}

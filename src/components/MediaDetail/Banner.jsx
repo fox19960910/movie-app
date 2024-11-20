@@ -33,10 +33,13 @@ const Banner = ({
                 src={`https://image.tmdb.org/t/p/original/${backdropPath}`}
                 alt=""
             />
-            <div className="relative mx-auto flex max-w-screen-xl gap-6 px-6 py-10 lg:gap-8">
+            <div className="relative mx-auto flex max-w-screen-xl gap-6 px-6 pb-8 pt-20 lg:gap-8">
                 <div className="flex-1">
                     <ImageCpn
-                        src={`https://image.tmdb.org/t/p/original/${posterPath}`}
+                        src={
+                            posterPath &&
+                            `https://image.tmdb.org/t/p/original/${posterPath}`
+                        }
                         alt=""
                         width={600}
                         height={900}

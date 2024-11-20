@@ -20,7 +20,9 @@ const ImageCpn = ({ src, width, height, className }) => {
     }, [src, width, height])
     return (
         <img
-            className={currentSrc === src ? className : `${className} blur-sm`}
+            className={
+                currentSrc === src || !src ? className : `${className} blur-sm`
+            }
             src={currentSrc}
             alt=""
             width={width}
